@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <style>
+		*::selection {
+			background: none;
+		}
+
+        div,ul,li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 650px;
+            height: 320px;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        #box li {
+            position: absolute;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        #box li:first-child {
+            opacity: 1;           
+        }
+
+        img {
+            width: 650px;
+            height: 320px;
+        }
+
+        .btn {
+            width: 80px;
+            height: 30px;
+            position: absolute;
+            background-color:rgba(0,0,0,.7);
+            color: #fff;
+            text-align: center;
+            top: 150px;
+            line-height: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #right {
+            right: 0;
+        }
+
+        .btn:active {
+            background-color: rgba(0,0,0,.5);
+        }
+
+     
+    </style>
+
+</head>
+<body>
+	<div id="box">
+        <ul>
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+        </ul>
+        <div class="btn" id="left">left</div>
+        <div class="btn" id="right">right</div>       
+    </div> 
+<script>
+	var li = document.getElementsByTagName('li')
+	var right = document.getElementById('right')
+	var left = document.getElementById('left')
+	var index = 0
+	var oldLi = li[0]
+	var newLi;
+	right.onclick = function(){
+		index++;
+		oldLi.style.opacity = 0
+		if(index == li.length){
+			index = 0
+		}
+		newLi = li[index]
+		newLi.style.opacity = 1
+		oldLi = newLi
+		// for(var i = 0; i < li.length; i++){
+		// 	li[i].style.opacity = 0
+		// }
+		// li[index].style.opacity = 1
+	}
+
+	left.onclick = function(){
+		index--;
+		if(index == -1){
+			index = li.length - 1
+		}
+		for(var i = 0; i < li.length; i++){
+			li[i].style.opacity = 0
+		}
+		li[index].style.opacity = 1
+	}
+
+	box.onmouseenter = function(){
+		clearInterval(timerId)
+		right.style.display = 'block'
+		left.style.display = 'block'
+	}
+	var timerId = setInterval(function(){
+		right.click()
+	},2000)
+</script>
+</body>
+</html>
